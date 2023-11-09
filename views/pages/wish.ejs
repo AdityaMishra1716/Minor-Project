@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Wishlist</title>
     <link rel="shortcut icon" href="img/k.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+
+<body class="m-0 p-0 bg-violet-300">
     <%- include('../components/header.ejs') %>
-    <main>dzkjgher</main>
-    <%- include('../components/footer.ejs') %>
+        <main class="mt-[80px] mr-[40px] ml-[40px] flex flex-col items-center gap-[20px]">
+            <div class="h-[100px] w-11/12 bg-white flex justify-around items-center rounded-sm">
+                
+       Your Wishlist
+            </div>
+            <div class="w-11/12 bg-white  flex justify-between rounded-sm p-1 gap-2">
+            <div class="w-full flex flex-col  justify-start items-start gap-8  ">
+
+                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
+                    <div>details Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
+                </div>
+                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
+                    <div>details Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
+                </div>
+                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
+                    <div>details Lorem ipsum dolor etur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
+                </div>
+            </div>
+           
+        </div>
+        </main>
+        <%- include('../components/footer.ejs') %>
 </body>
+
 </html>

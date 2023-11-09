@@ -1,9 +1,17 @@
 import express from "express";
-
+import { fileURLToPath } from 'url';
+import path from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app=express();
 const port=3000;
-app.use(express.static("public"));
+
+// Serve static assets from the 'public' folder
+app.use(express.static(path.join(__dirname, 'public')));
+// Serve jQuery from the 'node_modules' directory
+app.use('/scripts', express.static(path.join(__dirname, 'node_modules/jquery/dist')));
+
 
 app.get("/",(req,res)=>{
     
