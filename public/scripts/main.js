@@ -1,7 +1,7 @@
 // import $ from "jquery";
-$("h1").css("color","Purple");
-$("h1").css("font-size","30px");
-$("h1").text("summer season end");
+// $("h1").css("color","Purple");
+// $("h1").css("font-size","30px");
+// $("h1").text("summer season end");
 
 function increaseCount(a, b) {
     var input = b.previousElementSibling;
@@ -20,3 +20,5 @@ function increaseCount(a, b) {
       input.value = value;
     }
   }
+
+
