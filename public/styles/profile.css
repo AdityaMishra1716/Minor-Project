@@ -1,0 +1,200 @@
+body{
+    background-color: rgb(196 181 253);
+}
+.myprofi{
+    font-size: 20px;
+    margin: 0px 30px; 
+    position: relative;
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    top: 90px;
+    text-align: center;
+}
+.hello{
+    display: inline;
+    position: relative;
+    top: 100px;
+    text-align: center;
+}
+.hellopic{
+    display: inline;
+    position: relative;
+    left: 45vw;
+    
+}
+.Hellotext{
+    position: relative;
+    left: 720px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 14vh;
+    left: 2vw;
+}
+.personalinfo{
+    display: inline;
+    font-size: 17px;
+    margin-bottom: 6px;
+    padding: 34px;
+    text-align: center;
+    width: 18vw;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+    
+}
+.myorders{
+    display: inline;
+    font-size: 17px;
+    margin-bottom: 6px;
+    padding: 34px;
+    text-align: center;
+    width: 18vw;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+.mycoupons{
+    display: inline;
+    font-size: 17px;
+    padding: 34px;
+    text-align: center;
+    width: 18vw;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: absolute;
+    justify-content:space-evenly;
+    top: 23.5vh;
+    left: 22vw;
+    font-size: 17px;
+    padding: 34px;
+    width: 76vw;
+    height: 39.6vh;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+   }
+.name{
+    display: flex;
+    justify-content: flex-start;
+}
+.namespan{
+    display: inline;
+}
+
+.firstname{
+    order: 1;
+    display: inline;
+    position: relative;
+    left: 8.4vw;
+    border: 2px solid beige;
+    background-color: grey;
+    opacity: 0.6;
+    text-align: center;
+    border-radius: 20px;
+    height: 5vh;
+    margin-bottom: 0px;
+    padding: 6px 20px;
+}
+.secondname{
+    order: 2;
+    display: inline;
+    position: relative;
+    left: 8vw;
+    border: 2px solid beige;
+    background-color: grey;
+    opacity: 0.6;
+    text-align: center;
+    border-radius: 20px;
+    height: 5vh;
+    margin-bottom: 0px;
+    margin-left: 3px;
+    padding: 6px 20px;
+}
+.ph{
+    display: inline;
+}
+.PH{
+    display: inline;
+    position: relative;
+    border: 2px solid beige;
+    background-color: grey;
+    left: 6vw;
+    opacity: 0.6;
+    text-align: center;
+    border-radius: 20px;
+    width: 25vw;
+    height: 10vh;
+    padding: 6px 20px;
+    margin-bottom: 20px;
+}
+
+.add{
+    display: inline;
+    position: relative;
+    left: 9.6vw;
+    border: 2px solid beige;
+    background-color: grey;
+    opacity: 0.6;
+    text-align: center;
+    border-radius: 20px;
+    height: 10vh;
+    width: 100vw;
+    padding: 6px 20px;
+}
+.adu{
+    display: inline;
+}
+.emu{
+    display: inline;
+}
+.emailbar{
+    display: inline;
+    position: relative;
+    border: 2px solid beige;
+    background-color: grey;
+    left: 10.8vw;
+    opacity: 0.6;
+    text-align: center;
+    border-radius: 20px;
+    width: 25vw;
+    height: 10vh;
+    padding: 6px 20px;
+}
+.photo{
+    position: absolute;
+    left: 60vw;
+    top: 2vh;
+}
+.settings{
+    position: absolute;
+    left: 68.6vw;
+    top:36.2vh;
+}
+.set{
+    position: absolute;
+    left: 70vw;
+    top: 35.7vh;
+}
+.feed{
+    position: absolute;
+    left: 62vw;
+    top: 35.7vh;
+}
+.feedback{
+    position: absolute;
+    left: 64vw;
+    top: 35.7vh;
+}
