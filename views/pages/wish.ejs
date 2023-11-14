@@ -9,28 +9,48 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="m-0 p-0 bg-violet-300">
+<body class="m-0 p-0 bg-violet-300  h-full ">
     <%- include('../components/header.ejs') %>
         <main class="mt-[80px] mr-[40px] ml-[40px] min-h-[60.6vh] flex flex-col items-center gap-[20px]">
             <div class="h-[100px] w-11/12 bg-white flex justify-around items-center rounded-sm">
-                
-       Your Wishlist
-            </div>
-            <div class="w-11/12 bg-white  flex justify-between rounded-sm p-1 gap-2">
-            <div class="w-full flex flex-col  justify-start items-start gap-8  ">
+                <div>Wishlist</div>
 
-                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
-                    <div>details Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
-                </div>
-                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
-                    <div>details Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
-                </div>
-                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
-                    <div>details Lorem ipsum dolor etur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
-                </div>
             </div>
-           
-        </div>
+
+
+
+
+            <% if(productName.length>0){%>
+                
+                <div class="w-11/12  min-h-[50vh] bg-white items-start flex flex-col rounded-sm p-1 gap-2 ">
+                    <% for (let i=0;i<productName.length;i++){ %>
+                        <div class=" w-full border-2 border-black flex items-center relative"><img src="/img/k.png" alt=""
+                                class="w-[100px]">
+                            <div>
+                                <h1>
+                                    <%= productName[i] %>
+                                </h1>
+                            </div>
+                        
+                        <div class=" absolute right-1">
+                            <form action="/wish/remove/<%= i %>" method="POST">
+                                <input type="hidden" name="itemName" value="<%= i %>">
+                                <button type="submit"><img src="img/trash.png" class="w-6"></button>
+                            </form>
+                        </div></div>
+                        <% } %>
+                </div>
+                
+                    <% } else{%>
+                        <div
+                            class="w-11/12  min-h-[50vh] bg-white items-center flex justify-center rounded-sm p-1 gap-2">
+
+                            <div class="w-full flex justify-center items-center ">Empty</div>
+                        </div>
+                        <% } %>
+
+
+
         </main>
         <%- include('../components/footer.ejs') %>
 </body>
