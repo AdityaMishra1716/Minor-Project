@@ -11,52 +11,39 @@
 
 </head>
 
-<body class="m-0 p-0 bg-violet-300">
+<body class="m-0 p-0 bg-violet-300 h-full">
     <%- include('../components/header.ejs') %>
     <main class="mt-[80px] mr-[40px] ml-[40px] min-h-[60.6vh]">
-        <div class="ti"><strong>My Profile</strong></div>
-        <div class="main">
-            <div class="container1">
+        <div class="border-2 border-black flex justify-center"><strong>My Profile</strong></div>
+        <div class="Hello flex  flex-col items-center border-2 border-black">
+            <div class="image">
+              <img src="/img/pp-modified.png" width="150px" height="150px">
+            </div>
+            <div class="text">
+              <h3><strong>Hello, Ashish</strong></h3>
+            </div>
+          </div>
+        <div class="main flex justify-center gap-2">
+            <div class="container1 border-2 border-black">
                 <div class="options"><strong>Personal Details</strong></div>
                 <div class="options"><strong>My Orders</strong></div>
                 <div class="options"><strong>My Coupons</strong></div>
             </div>
-            <div class="container2">
-                
-                    <div class="Hello">
-                        <div class="image">
-                          <img src="/img/pp-modified.png" width="150px" height="150px">
-                        </div>
-                        <div class="text">
-                          <h3><strong>Hello, Ashish</strong></h3>
-                        </div>
-                      </div>
-                    <div class="box">
-
-                        <div class="bull">
-                            <div class="name"><strong>Your Name: </strong></div>
-                            <div class="Phone_Number"><strong>Phone Number: </strong></div>
-                            <div class="Email"><strong>Email: </strong></div>
-                            <div class="Address"><strong>Address: </strong></div>
-
-                        </div>
-                        <div class="details">
-                            <div class="su">Ashish Kumar Singh</div>
-                            <div class="su">+916261478150</div>
-                            <div class="su">everyonesdady@gmail.com</div>
-                            <div class="su" id="huhu">You are so beautiful you are so elegant you are looking just like a wow just like a wow</div>
-                            <div class="settings">
-                                <div class="img">
-                                    <img src="/img/setting.png" width="20" height="10" alt="22">
-                                </div>
-                                <div class="text">
-                                    <h5>Settings</h5>
-                                </div>
-                        </div>
-                        </div>
-                    </div>
-                
-                
+            
+            <div class="container2 border-2 border-black flex justify-center relative"> 
+                <div class="flex flex-col w-[500px]">
+                    <div class="flex gap-2"><h1>Name:</h1><p> Ashish Singh</p></div>
+                    <div class="flex gap-2"><h1>Name:</h1><p> Ashish Singh</p></div>
+                    <div class="flex gap-2"><h1>Name:</h1><p> Ashish Singh</p></div>
+                    <div class="flex gap-2"><h1>Name:</h1><p> Ashish Singh</p></div>
+                    <div class="flex gap-2"><h1>Name:</h1><p> Ashish Singh</p></div>
+                   
+                    
+                    
+                </div>
+                <div class="text absolute right-0 bottom-0">
+                    <h5>Settings</h5>
+                </div>
             </div>
         </div>
 

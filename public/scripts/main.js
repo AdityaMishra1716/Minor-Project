@@ -98,11 +98,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-// for removing
-function removeItem(i) {
-  // Perform the removal of the item based on its index in the cart array
-  productName.splice(i, 1);
-  // Refresh the page or update the UI to reflect the change
-  location.reload(); // For demonstration, you might use a different method to update the UI
-};

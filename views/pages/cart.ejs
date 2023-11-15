@@ -21,11 +21,11 @@
                 <div class="w-11/12  min-h-[50vh] bg-white items-start flex flex-col rounded-sm p-1 gap-2">
                     <!-- <div class=" w-1/4 border-2 border-red-900 flex flex-col justify-center items-center">Lorem i</div> -->
                     <% for (let i=0;i<productName.length;i++){ %>
-                        <div class=" w-full border-2 border-black flex items-center relative"><img src="/img/k.png"
-                                alt="" class="w-[100px]">
+                        <div class=" w-full border-2 border-black flex items-center relative"><img
+                                src="<%= productName[i].image %>" alt="" class="w-[100px]">
                             <div>
                                 <h1>
-                                    <%= productName[i] %>
+                                    <%= productName[i].name %>
 
                                 </h1>
                                 <h3>quantity:<%= productquantity[i] %>
