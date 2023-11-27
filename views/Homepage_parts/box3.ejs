@@ -10,8 +10,8 @@
           <button type="submit" name="Wishlist" class="submitButton1"><img src="img/heart.png"
               class="w-5 absolute right-1 top-1  " alt=""></button>
         </form>
-        <form class="textForm3" action="/detail/<%= i %>" method="post">
-          <input type="hidden" name="textToSubmit3" class="textToSubmit3" value="<%= i %>">
+        <form class="textForm3" action="/detail/<%= sport_items[i]._id %>" method="post">
+          <!-- <input type="hidden" name="textToSubmit3" class="textToSubmit3" value="<%= i %>"> -->
           <button type="submit" class="submitButton3"><img src="<%= sport_items[i].image %>" alt="" class="w-[130px] h-[130px]"></button>
         </form>
 

@@ -13,23 +13,29 @@
 <body class="m-0 p-0 bg-violet-300">
     <%- include('../components/header.ejs') %>
         <main class="mt-[80px] mr-[40px] min-h-[60.6vh] ml-[40px] flex flex-col items-center gap-[20px]">
-            <div class="h-[100px] w-11/12 bg-white flex justify-around items-center rounded-sm">
+        <div class="h-[100px] w-11/12 bg-white flex justify-around items-center rounded-sm">
                 
-       Orders List
-            </div>
-            <div class="w-11/12 bg-white  flex justify-between rounded-sm p-1 gap-2">
+       Orders History
+        </div>
+        <% if ( order.length>0){ %>
+            <div class="w-11/12  flex justify-between rounded-sm p-1 gap-2">
             <div class="w-full flex flex-col  justify-start items-start gap-8  ">
 
-                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
-                    <div>details Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
+                <div class=" w-full bg-white   flex items-center py-8 px-2">
+                    <div>
+                    <h1><%= order.length %> -Item Purchased</h1> 
+                <h1>Total Amount :&#x20B9;<%= price %></h1></div>
                 </div>
-                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
-                    <div>details Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
-                </div>
-                <div class=" w-full border-2 border-black flex items-center"><img src="/img/k.png" alt="" class="w-[100px]">
-                    <div>details Lorem ipsum dolor etur adipisicing elit. Nesciunt, odit.nfbngfdndkjgbkrjkdrnhgirdi</div>
-                </div>
+                
             </div>
+            <% } else{%>
+                <div
+                    class="w-11/12  min-h-[50vh] bg-white items-center flex flex-col justify-center rounded-sm p-1 gap-2">
+                    <img src="/img/EMPTYWish.jpg" alt="">
+
+                    <div class="w-full flex justify-center items-center ">NO ORDERS</div>
+                </div>
+                <% } %>
            
         </div>
         </main>

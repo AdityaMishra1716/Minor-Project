@@ -10,6 +10,8 @@ const __dirname = path.dirname(__filename);
 const cart = [];
 const wish = [];
 const product = [];
+const order=[];
+
 
 const app = express();
 const port = 3000;
@@ -65,22 +67,35 @@ app.get("/", async (req, res) => {
     const beauty_items = await beauty_item.find({}).exec();
     const electric_items = await electric_item.find({}).exec();
     const sport_items = await sport_item.find({}).exec();
-    product.splice(0, 1);
+    product.pop();
+    
     res.render("app.ejs", {
         beauty_items: beauty_items,
         electric_items: electric_items,
         sport_items: sport_items
     });
+
 });
 
 app.get("/profile", (req, res) => {
-    product.splice(0, 1);
+    product.pop();
     res.render('pages/profile.ejs');
 });
 app.get("/order", (req, res) => {
-    product.splice(0, 1);
-    res.render('pages/order.ejs');
+    product.pop();
+    res.render('pages/order.ejs',{price:70,
+        order:order
+        
+    });
 });
+app.post("/order/:index",async(req,res)=>{
+order.push(cart);
+    
+    res.render('pages/order.ejs',{price:req.params.index,
+        order:order,
+    });
+
+})
 app.get("/detail/:index", (req, res) => {
 
     res.render('pages/product_detail.ejs', { detail: product });
@@ -88,19 +103,22 @@ app.get("/detail/:index", (req, res) => {
 
 app.post("/detail/:index", async (req, res) => {
 
-    const itemIndex = parseInt(req.params.index);
-    const item1 = await sport_item.findOne().skip(itemIndex).exec();
-    const item2 = await electric_item.findOne().skip(itemIndex).exec();
-    const item = await beauty_item.findOne().skip(itemIndex).exec();
+    const itemIndex = req.params.index;
+    const item = await beauty_item.findById(itemIndex).exec();
+    const item1 = await sport_item.findById(itemIndex).exec();
+    const item2 = await electric_item.findById(itemIndex).exec();
 
     const items = [item, item1, item2];
     
     for (let i = 0; i < items.length; i++) {
         if (items[i] == null) {
             // console.log("sdhfb")
+            continue;
         }
         else {
             product.push(items[i]);
+            
+            break
         }
     }
     res.render('pages/product_detail.ejs', { detail: product });
@@ -140,7 +158,7 @@ app.post('/wish/remove/:index', (req, res) => {
         // Remove the item at the specified index from the cart array
         wish.splice(itemIndex, 1);
 
-        console.log("wishlist after remove", wish);
+     
 
 
     }
@@ -197,7 +215,7 @@ app.post("/cart/submit/:index", async (req, res) => {
     const item = await beauty_item.findById(itemIndex).exec();
 
     const items = [item, item1, item2];
-console.log(req.body.quantval)
+
     for (let i = 0; i < items.length; i++) {
         if (items[i] == null) {
 

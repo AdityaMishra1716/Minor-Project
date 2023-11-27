@@ -15,7 +15,6 @@
         <main class="mt-[80px] mr-[40px] ml-[40px] min-h-[60.6vh] flex flex-col items-center gap-[20px]">
             <div class="h-[100px] w-11/12 bg-white flex justify-around items-center rounded-sm">
                 <div>Items in Your Cart</div>
-                <div class=" "><button class="bg-purple-900 text-white rounded-sm p-[6px]">BUY NOW</button></div>
             </div>
 
             <% if(productName.length>0){%>
@@ -44,7 +43,7 @@
                             </div>
                             <% } %>
                     </div>
-                    <div class="w-[20%] text-lg h-[240px] gap-2 bg-white  flex-col flex justify-start p-1">
+                    <div class="w-[20%] text-lg min-h-[280px] gap-3 bg-white  flex-col flex justify-start p-1">
                         <h1>Price Details</h1>
                         <hr>
                         <% let total=0%>
@@ -55,9 +54,11 @@
                                         <h1>Items Total:&#x20B9;<%= total%></h1>
                                         <h1>Discount:&#x20B9;0</h1>
                                         <h1>Delivery Charges:&#x20B9;70</h1>
-                                        <hr>
-                                        <h1>Total Amount:&#x20B9;<%= total+70 %>
+                                        <hr><% total= total+70 %>
+                                        <h1>Total Amount:&#x20B9;<%= total %>
                                         </h1>
+                                        <div class=""><form action="/order/<%= total %>" method="post"><a href="/order"><button class="bg-purple-900 text-white rounded-sm p-[6px]">BUY NOW</button></a></form></div>
+
                     </div>
                 </div>
                 <% } else{%>
