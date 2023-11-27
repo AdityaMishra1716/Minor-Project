@@ -7,6 +7,7 @@
     <title>Cart</title>
     <link rel="shortcut icon" href="img/k.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body class="m-0 p-0 bg-violet-300  h-full ">
@@ -18,33 +19,53 @@
             </div>
 
             <% if(productName.length>0){%>
-                <div class="w-11/12  min-h-[50vh] bg-white items-start flex flex-col rounded-sm p-1 gap-2">
-                    <!-- <div class=" w-1/4 border-2 border-red-900 flex flex-col justify-center items-center">Lorem i</div> -->
-                    <% for (let i=0;i<productName.length;i++){ %>
-                        <div class=" w-full border-2 border-black flex items-center relative"><img
-                                src="<%= productName[i].image %>" alt="" class="w-[100px]">
-                            <div>
-                                <h1>
-                                    <%= productName[i].name %>
+                <div class="min-h-[50vh] w-11/12 items-ce flex  rounded-md  gap-4 justify-center">
 
-                                </h1>
-                                <h3>quantity:<%= productquantity[i] %>
-                                </h3>
+                    <div class="flex flex-col w-[80%] rounded-sm   gap-2">
+                        <% for (let i=0;i<productName.length;i++){ %>
+                            <div class=" w-full  flex items-center relative bg-white px-8 py-2 gap-4 text-lg">
+                                <img src="<%= productName[i].image %>" alt=""
+                                    class="w-[100px] h-[100px] border-2 border-grey p-2">
+                                <div>
+                                    <h1>
+                                        <%= productName[i].name %>
+                                            <h1> price:&#x20B9;<%= productName[i].price %>
+                                            </h1>
+                                    </h1>
+                                    <h3>Quantity:<%= productName[i].quantity %>
+                                    </h3>
+                                </div>
+                                <div class=" absolute right-1">
+                                    <form action="/cart/remove/<%= i %>" method="POST">
+                                        <input type="hidden" name="itemName" value="<%= i %>">
+                                        <button type="submit"><img src="img/trash.png" class="w-6"></button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class=" absolute right-1">
-                                <form action="/cart/remove/<%= i %>" method="POST">
-                                    <input type="hidden" name="itemName" value="<%= i %>">
-                                    <button type="submit"><img src="img/trash.png" class="w-6"></button>
-                                </form>
-                            </div>
-                        </div>
-                        <% } %>
+                            <% } %>
+                    </div>
+                    <div class="w-[20%] text-lg h-[240px] gap-2 bg-white  flex-col flex justify-start p-1">
+                        <h1>Price Details</h1>
+                        <hr>
+                        <% let total=0%>
+                            <% for (let i=0;i<productName.length;i++){ %>
+                                <% total=total + (productName[i].price*productName[i].quantity)%>
+                                    <% } %>
+                                        <h1>Items:<%=productName.length%></h1>
+                                        <h1>Items Total:&#x20B9;<%= total%></h1>
+                                        <h1>Discount:&#x20B9;0</h1>
+                                        <h1>Delivery Charges:&#x20B9;70</h1>
+                                        <hr>
+                                        <h1>Total Amount:&#x20B9;<%= total+70 %>
+                                        </h1>
+                    </div>
                 </div>
-
                 <% } else{%>
-                    <div class="w-11/12  min-h-[50vh] bg-white items-center flex justify-center rounded-sm p-1 gap-2">
+                    <div
+                        class="w-11/12  min-h-[50vh] bg-white items-center flex flex-col justify-center rounded-sm p-1 gap-2">
+                        <img src="/img/EMPTYWish.jpg" alt="">
 
-                        <div class="w-full flex justify-center items-center ">Empty</div>
+                        <div class="w-full flex justify-center items-center ">Your Cart Is Empty</div>
                     </div>
                     <% } %>
 

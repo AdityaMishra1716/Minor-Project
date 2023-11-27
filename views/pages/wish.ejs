@@ -7,6 +7,7 @@
     <title>Wishlist</title>
     <link rel="shortcut icon" href="img/k.png" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body class="m-0 p-0 bg-violet-300  h-full ">
@@ -22,14 +23,14 @@
 
             <% if(productName.length>0){%>
                 
-                <div class="w-11/12  min-h-[50vh] bg-white items-start flex flex-col rounded-sm p-1 gap-2 ">
+                <div class="w-11/12  min-h-[50vh]  items-start flex flex-col rounded-sm p-1 gap-2 ">
                     <% for (let i=0;i<productName.length;i++){ %>
-                        <div class=" w-full border-2 border-black flex items-center relative"><img src="<%= productName[i].image %>" alt=""
-                                class="w-[100px]">
-                            <div>
-                                <h1>
-                                    <%= productName[i].name%>
-                                </h1>
+                    <div class=" w-full  flex items-center relative gap-4 px-8 py-2 bg-white">
+                        <img src="<%= productName[i].image %>" alt=""class="w-[100px] h-[100px] border-2 border-grey p-2">
+                            <div  class=" text-xl">
+                                <h1><%= productName[i].name%> </h1>
+                                <h1> price:&#x20B9;<%= productName[i].price%></h1>
+                               
                             </div>
                         
                         <div class=" absolute right-1">
@@ -37,15 +38,17 @@
                                 <input type="hidden" name="itemName" value="<%= i %>">
                                 <button type="submit"><img src="img/trash.png" class="w-6"></button>
                             </form>
-                        </div></div>
+                        </div>
+                    </div>
                         <% } %>
                 </div>
                 
                     <% } else{%>
                         <div
-                            class="w-11/12  min-h-[50vh] bg-white items-center flex justify-center rounded-sm p-1 gap-2">
+                            class="w-11/12  min-h-[50vh] bg-white items-center flex flex-col justify-center rounded-sm p-1 gap-2">
+                            <img src="/img/EMPTYWish.jpg" alt="">
 
-                            <div class="w-full flex justify-center items-center ">Empty</div>
+                            <div class="w-full flex justify-center items-center ">Your Wishlist Is Empty</div>
                         </div>
                         <% } %>
 

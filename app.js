@@ -8,8 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const cart = [];
-const quantity = [];
 const wish = [];
+const product = [];
 
 const app = express();
 const port = 3000;
@@ -35,21 +35,24 @@ const electronicschema = {
     image: String,
     price: Number,
     description: String,
-    rating: Number
+    rating: Number,
+    quantity: Number
 };
 const sportschema = {
     name: String,
     image: String,
     price: Number,
     description: String,
-    rating: Number
+    rating: Number,
+    quantity: Number
 };
 const beautyschema = {
     name: String,
     image: String,
     price: Number,
     description: String,
-    rating: Number
+    rating: Number,
+    quantity: Number
 };
 const beauty_item = mongoose.model("Beauty", beautyschema);
 const sport_item = mongoose.model("sport", sportschema);
@@ -62,6 +65,7 @@ app.get("/", async (req, res) => {
     const beauty_items = await beauty_item.find({}).exec();
     const electric_items = await electric_item.find({}).exec();
     const sport_items = await sport_item.find({}).exec();
+    product.splice(0, 1);
     res.render("app.ejs", {
         beauty_items: beauty_items,
         electric_items: electric_items,
@@ -70,41 +74,64 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-
+    product.splice(0, 1);
     res.render('pages/profile.ejs');
 });
 app.get("/order", (req, res) => {
-
+    product.splice(0, 1);
     res.render('pages/order.ejs');
 });
+app.get("/detail/:index", (req, res) => {
 
-app.get("/wish", (req, res) => {
-
-    res.render('pages/wish.ejs', {
-        productName: wish,
-
-
-    });
+    res.render('pages/product_detail.ejs', { detail: product });
 });
 
-app.post("/wish/submit/:index", async (req, res) => {
-    // wish.push(req.body.textToSubmit1);
-    // console.log("wishlist", wish);
+app.post("/detail/:index", async (req, res) => {
+
     const itemIndex = parseInt(req.params.index);
     const item1 = await sport_item.findOne().skip(itemIndex).exec();
     const item2 = await electric_item.findOne().skip(itemIndex).exec();
     const item = await beauty_item.findOne().skip(itemIndex).exec();
-    if (item.name == req.body.textToSubmit1) {
 
-        wish.push(item);
+    const items = [item, item1, item2];
+    
+    for (let i = 0; i < items.length; i++) {
+        if (items[i] == null) {
+            // console.log("sdhfb")
+        }
+        else {
+            product.push(items[i]);
+        }
+    }
+    res.render('pages/product_detail.ejs', { detail: product });
 
+});
+
+app.get("/wish", (req, res) => {
+    product.splice(0, 1);
+    res.render('pages/wish.ejs', {
+        productName: wish
+    });
+});
+
+app.post("/wish/submit/:index", async (req, res) => {
+
+    const itemIndex = req.params.index;
+    const item = await beauty_item.findById(itemIndex).exec();
+    const item1 = await sport_item.findById(itemIndex).exec();
+    const item2 = await electric_item.findById(itemIndex).exec();
+    const items = [item, item1, item2];
+ 
+    for (let i = 0; i < items.length; i++) {
+        if (items[i] == null) {
+            // console.log("sdhfb")
+        }
+        else {
+            wish.push(items[i]);
+        }
     }
-    else if (item1.name == req.body.textToSubmit1) {
-        wish.push(item1);
-    } else if (item2.name == req.body.textToSubmit1) {
-        wish.push(item2);
-    }
-    res.redirect("/");
+    res.redirect(req.get('referer'));
+
 });
 app.post('/wish/remove/:index', (req, res) => {
     const itemIndex = parseInt(req.params.index);
@@ -120,37 +147,70 @@ app.post('/wish/remove/:index', (req, res) => {
 
     res.redirect('/wish'); // Redirect back to the cart page
 });
-app.get("/cart", (req, res) => {
 
+
+app.get("/cart", (req, res) => {
+    // Function to merge objects based on their _id and accumulate quantities in place within the array
+    product.splice(0, 1);
+    function mergeObjectsInCart(arr) {
+        const quantityMap = {};
+
+        for (let i = 0; i < arr.length; i++) {
+            const obj = arr[i];
+            const { _id, quantity } = obj;
+
+            if (!quantityMap[_id]) {
+                quantityMap[_id] = { ...obj }; // Save the reference to the object
+                quantityMap[_id].quantity = quantity || 0;
+            } else if (quantity) {
+                quantityMap[_id].quantity += quantity;
+                arr.splice(i, 1); // Remove duplicate object
+                i--; // Decrement index due to removal
+            }
+        }
+
+        for (let i = 0; i < arr.length; i++) {
+            const { _id } = arr[i];
+            if (quantityMap[_id]) {
+                arr[i].quantity = quantityMap[_id].quantity;
+            }
+        }
+    }
+
+    // Call the function to perform in-place merging and quantity accumulation on the cart array
+    mergeObjectsInCart(cart);
     res.render('pages/cart.ejs', {
         productName: cart,
-        productquantity: quantity
+
     });
+
 
 });
 
 
 app.post("/cart/submit/:index", async (req, res) => {
-    // wish.push(req.body.textToSubmit1);
-    // console.log("wishlist", wish);
-    const itemIndex = parseInt(req.params.index);
-    const item1 = await sport_item.findOne().skip(itemIndex).exec();
-    const item2 = await electric_item.findOne().skip(itemIndex).exec();
-    const item = await beauty_item.findOne().skip(itemIndex).exec();
-    if (item.name == req.body.textToSubmit) {
 
-        cart.push(item);
-        quantity.push(req.body.quantval);
+    const itemIndex = req.params.index;
 
+    const item1 = await sport_item.findById(itemIndex).exec();
+    const item2 = await electric_item.findById(itemIndex).exec();
+    const item = await beauty_item.findById(itemIndex).exec();
+
+    const items = [item, item1, item2];
+console.log(req.body.quantval)
+    for (let i = 0; i < items.length; i++) {
+        if (items[i] == null) {
+
+        }
+        else {
+            const value = items[i];
+
+            value.quantity = req.body.quantval;
+            cart.push(value);
+        }
     }
-    else if (item1.name == req.body.textToSubmit) {
-        cart.push(item1);
-        quantity.push(req.body.quantval);
-    } else if (item2.name == req.body.textToSubmit) {
-        cart.push(item2);
-        quantity.push(req.body.quantval);
-    }
-    res.redirect("/");
+
+    res.redirect(req.get('referer'));
 });
 app.post('/cart/remove/:index', (req, res) => {
     const itemIndex = parseInt(req.params.index);
@@ -158,9 +218,7 @@ app.post('/cart/remove/:index', (req, res) => {
     if (!isNaN(itemIndex) && itemIndex >= 0 && itemIndex < cart.length) {
         // Remove the item at the specified index from the cart array
         cart.splice(itemIndex, 1);
-        quantity.splice(itemIndex, 1);
-        console.log("cartlist after remove", cart);
-        console.log("Quantity after remove", quantity);
+
     }
 
     res.redirect('/cart'); // Redirect back to the cart page

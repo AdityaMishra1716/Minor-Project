@@ -56,7 +56,7 @@ function showSlides(n) {
 // 
 
 
-
+// adding in the cart with quantity
 
 document.addEventListener('DOMContentLoaded', function() {
   // Add an event listener to all buttons with the class "submitButton"
@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
       button.addEventListener('click', function(event) {
           // Find the nearest text content within the parent div
           var textContent = this.closest('.textContainer').querySelector('.textContent').innerText;
-          var quanval=this.closest('.textContainer').querySelector('.inputval').value;
+          var quanval=this.closest('.textForm2').querySelector('.inputval').value;
+        
           // Set the text content to the hidden input field
           this.closest('.textForm2').querySelector('.textToSubmit').value = textContent;
           this.closest('.textForm2').querySelector('.quantval').value = quanval;
@@ -75,10 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+// Quantity selector
 
 
 
-
+// adding in the wishlist
 document.addEventListener('DOMContentLoaded', function() {
   // Add an event listener to all buttons with the class "submitButton"
   document.querySelectorAll('.submitButton1').forEach(function(button) {
@@ -88,6 +90,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
           // Set the text content to the hidden input field
           this.closest('.textForm1').querySelector('.textToSubmit1').value = textContent;
+
+          // Log to console to verify the text content
+          console.log('Text to submit:', textContent);
+      });
+  });
+});
+
+// For Viewing the Product
+document.addEventListener('DOMContentLoaded', function() {
+  // Add an event listener to all buttons with the class "submitButton"
+  document.querySelectorAll('.submitButton3').forEach(function(button) {
+      button.addEventListener('click', function(event) {
+          // Find the nearest text content within the parent div
+          var textContent = this.closest('.textContainer').querySelector('.textContent').innerText;
+
+          // Set the text content to the hidden input field
+          this.closest('.textForm3').querySelector('.textToSubmit3').value = textContent;
 
           // Log to console to verify the text content
           console.log('Text to submit:', textContent);
